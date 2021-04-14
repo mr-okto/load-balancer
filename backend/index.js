@@ -38,7 +38,7 @@ app.get('/deactivate', function(req, res, next) {
     res.sendStatus(codes.StatusCodes.INTERNAL_SERVER_ERROR);
 });
 
-app.get('/', function(req, res, next) {
+app.get('/api', function(req, res, next) {
     reqCounter.inc(1);
     fetch('https://thatcopy.pw/catapi/rest/')
         .then((response) => {
