@@ -21,18 +21,19 @@ services:
     image: prom/node-exporter:latest
     container_name: nodeexporter
     restart: unless-stopped
-    ports:
-      - 9100:9100
+    expose:
+      - 9100
 
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:Z 
       - grafana-storage:/var/lib/grafana
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
 
   nginx:
     image: nginx
