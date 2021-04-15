@@ -7,6 +7,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:Z
+      - prometheus-storage:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
@@ -28,6 +29,7 @@ services:
     container_name: grafana
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana-storage:/var/lib/grafana
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -45,3 +47,7 @@ services:
     ports:
       - 80:8000
       - 9113:9113
+
+volumes:
+  grafana-storage:
+  prometheus-storage:
