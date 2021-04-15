@@ -6,6 +6,7 @@ const prom_client = require('prom-client');
 
 const APP_PORT = 8000;
 const METRICS_PORT = 8080;
+const FETCH_TARGET = 'https://jsonplaceholder.typicode.com/comments';
 
 
 const registry = new prom_client.Registry();
@@ -40,7 +41,7 @@ app.get('/deactivate', function(req, res, next) {
 
 app.get('/api', function(req, res, next) {
     reqCounter.inc(1);
-    fetch('https://thatcopy.pw/catapi/rest/')
+    fetch(FETCH_TARGET)
         .then((response) => {
             return response.json();
         })
